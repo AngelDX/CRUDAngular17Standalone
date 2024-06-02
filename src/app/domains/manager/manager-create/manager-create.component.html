@@ -1,0 +1,67 @@
+<h5 class="mb-5 text-lg font-bold tracking-tight text-gray-900 dark:text-white ">Employee Details</h5>
+<form [formGroup]="dataForm" class="w-full" (ngSubmit)="onSubmit()">
+  <div class="mb-5">
+    <label for="fullname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre completo</label>
+    <input type="text" id="fullname" class="form-control" placeholder="Name" formControlName="fullname">
+      @if (dataForm.get('fullname')?.hasError('required') && dataForm.get('fullname')?.touched) {
+      <div class="form-error">fullname is required</div>
+      }
+  </div>
+  <div class="mb-5">
+    <label for="position" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Posición</label>
+    <input type="text" id="position" class="form-control" placeholder="GERENTE" formControlName="position">
+    @if (dataForm.get('position')?.hasError('required') && dataForm.get('position')?.touched) {
+      <div class="form-error">position is required</div>
+      }
+  </div>
+  <div class="mb-5">
+    <label for="dni" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DNI</label>
+    <input type="text" id="dni" class="form-control" placeholder="1234578" formControlName="dni">
+    @if (dataForm.get('dni')?.hasError('required') && dataForm.get('dni')?.touched) {
+      <div class="form-error">dni is required</div>
+      }
+  </div>
+  <div class="mb-5">
+    <label for="birthdate" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha de nacimiento</label>
+    <input type="date" id="birthdate" class="form-control" formControlName="birthdate">
+    @if (dataForm.get('birthdate')?.hasError('required') && dataForm.get('birthdate')?.touched) {
+      <div class="form-error">Fecha is required</div>
+      }
+  </div>
+  <div class="mb-5">
+    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+    <input type="text" id="email" class="form-control" placeholder="juan34@gmail.com" formControlName="email">
+    @if (dataForm.get('email')?.hasError('required') && dataForm.get('email')?.touched) {
+      <div class="form-error">Email is required</div>
+      }
+  </div>
+  <div class="mb-5">
+    <label for="cellphone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Celular</label>
+    <input type="text" id="cellphone" class="form-control" placeholder="64578124" formControlName="cellphone">
+    @if (dataForm.get('cellphone')?.hasError('required') && dataForm.get('cellphone')?.touched) {
+      <div class="form-error">Celular is required</div>
+      }
+  </div>
+  <div class="mb-5">
+    <label for="season_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">season_id</label>
+    <!-- <select class="form-control" formControlName="season_id">
+      <option value="1">2023</option>
+      <option value="2">2024</option>
+      <option value="3">2025</option>
+    </select> -->
+    <select class="form-control" formControlName="season_id">
+      <option value="">Seleccione una opción</option>
+      @for (season of seasons(); track $index) {
+        <option value="{{season.id}}">{{season.name}}</option>
+      }
+    </select>
+    <!-- <input type="text" id="season_id" class="form-control" placeholder="64578124" formControlName="season_id"> -->
+    @if (dataForm.get('season_id')?.hasError('required') && dataForm.get('season_id')?.touched) {
+      <div class="form-error">season_id is required</div>
+      }
+  </div>
+  <button type="submit"
+    class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
+  <button type="button" (click)="onClose()"
+    class="text-white  ms-2 bg-gray-700 hover:bg-gray-800 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center">Cancel</button>
+</form>
